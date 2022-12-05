@@ -1,12 +1,20 @@
 spring:
   application:
-    name: PatientPortalDevConsolePerson
+    name: DevConsoleExampleApplication
   main:
     banner-mode: console
     allow-bean-definition-overriding: false
   # Database and JPA configuration
   datasource:
-    jndi-name: java:/PMRDatasource
+    dashboard:
+      driverClassName: com.mysql.jdbc.Driver
+      url: jdbc:mysql://pp-v1-patientportal-data-service-ro-qa.dbc.chenmed.local:3306/
+      username: aws_ppd_ro_qa
+      password: w3LkKXcMbL7TnFAF
+    hikari:
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
   jpa:
     hibernate:
       naming:
@@ -14,12 +22,6 @@ spring:
     properties:
       hibernate:
         show_sql: true
-
-server:
-  error:
-    whitelabel:
-      enabled: false
-    include-stacktrace: never
 
 management:
   endpoints:
