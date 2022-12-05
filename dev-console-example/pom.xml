@@ -15,7 +15,7 @@
 	<name>dev-console-person</name>
 	<description>Simple project for dev console</description>
 	<properties>
-		<java.version>17</java.version>
+		<java.version>8</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
