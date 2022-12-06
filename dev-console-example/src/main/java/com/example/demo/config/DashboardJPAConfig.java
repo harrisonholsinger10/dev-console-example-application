@@ -29,7 +29,7 @@ public class DashboardJPAConfig {
             EntityManagerFactoryBuilder builder) {
         return builder
                 .dataSource(dataSource)
-                .packages("com.example.demo.repositories")
+                .packages("com.example.demo.entities")
                 .build();
     }
 
