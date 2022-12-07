@@ -2,9 +2,16 @@ package com.example.demo.services;
 
 import com.example.demo.entities.AppointmentMaster;
 import com.example.demo.repositories.AppointmentMasterRepository;
+import com.example.demo.config.DashboardJPAConfig;
+import jakarta.persistence.Column;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.Optional;
 
 @Service
@@ -13,8 +20,31 @@ public class AppointmentMasterService {
     @Autowired
     private AppointmentMasterRepository repository;
 
+    @PersistenceContext
+    private EntityManager entityManager;
+
     public Optional<AppointmentMaster> findAppointmentOne(){
         return repository.findById(1L);
     }
+
+
+    @Transactional
+    public void insertWithQuery(){
+        entityManager.createNativeQuery("INSERT INTO APPOINTMENT_MASTER (SourceApptType,SourceApptId,APPOINTMENT_MASTER_ID,PARENT_ID,PATIENT_ID,PATIENT_NAME,DOCTOR_ID,DOCTOR_NAME,OFFICE_ID,SPECIALITY_ID,SPECIALTY_NAME,PROCEDURE_ID,PROCEDURE_NAME,APPT_DATE,END_DATE,START_TIME,END_TIME,FREQUENCY,STATUS,APPT_TYPE,APPT_NAME,CREATED_BY,CREATED_DATE,UPDATED_BY,UPDATED_DATE,TRANSPORT,TRANSPORT_COMMENT,COMMENTS,CALL_DATE,CALL_TIME,CALL_USER,CALL_STATUS,TRANS_CALL_DATE,TRANS_CALL_TIME,TRANS_CALL_USER,TRANS_PICK_UP_TIME,TRANS_CALL_STATUS,VISIT_CALL_DATE,VISIT_CALL_TIME,VISIT_CALL_USER,VISIT_CALL_STATUS,DELETE_INDICATOR,CANCELLATION_REASON,ELIGIB_UPDATED_BY,ELIGIB_UPDATED_DATE,ELIGIB_UPDATED_TIME,ELIGIB_STATUS,OWN_RIDE,MUTE,HEDIS_VERIFY,CALL_MGMT_COMMENTS,PRACTICE_ID,APPLICATION_CODE) \n" +
+                "VALUES (NULL,NULL,NULL,NULL,1105102,'PatientPortal, Test1',160718,'Samurai, Doctor',10329,3631,'PCP',20779,'TH - Video - OV','2022-11-15',NULL,'10:00:00','10:20:00',NULL,1,'N','IntuneTest, Patient','SVC-ENT-JWTK-NONPROD','2022-10-20 09:59:50',NULL,NULL,0,NULL,'Medication consult',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,'ECCP')")
+                .executeUpdate();
+    }
+
+    @Transactional
+    public Collection resultOfQuery(){
+
+    Collection result = entityManager.createNativeQuery("SELECT * FROM APPOINTMENT_MASTER WHERE PATIENT_ID = 1105102 AND DOCTOR_NAME = 'Samurai, Doctor'")
+                .getResultList();
+    return result;
+    }
+
+
+
+
 
 }
