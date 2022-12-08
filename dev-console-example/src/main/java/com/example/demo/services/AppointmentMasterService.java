@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -35,9 +36,9 @@ public class AppointmentMasterService {
     }
 
     @Transactional
-    public Collection resultOfQuery(){
+    public List<AppointmentMaster> resultOfQuery(){
 
-    Collection result = entityManager.createNativeQuery("SELECT * FROM APPOINTMENT_MASTER WHERE PATIENT_ID = 1105102 AND PROCEDURE_ID = 18215")
+    List<AppointmentMaster> result = entityManager.createNativeQuery("SELECT * FROM APPOINTMENT_MASTER WHERE PATIENT_ID = 1105102 AND PROCEDURE_ID = 18215")
                 .getResultList();
     return result;
     }
