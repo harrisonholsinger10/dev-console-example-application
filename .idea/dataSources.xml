@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="DASHBOARD_PROD@pp-v1-patientportal-data-service-ro-qa.dbc.chenmed.local" uuid="2b4a7145-8502-428b-888e-dde4c075b3fd">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://pp-v1-patientportal-data-service-ro-qa.dbc.chenmed.local:3306/DASHBOARD_PROD</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+  </component>
+</project>
