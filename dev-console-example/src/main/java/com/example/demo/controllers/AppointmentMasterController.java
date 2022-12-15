@@ -25,7 +25,7 @@ public class AppointmentMasterController {
     @GetMapping("/insertAppointment")
     List<AppointmentMaster> insertTestAppointment(){
         service.insertWithQuery();
-        return service.resultOfQuery();
+        return service.resultOfInsertQuery();
     }
 
 }

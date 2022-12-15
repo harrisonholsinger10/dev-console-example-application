@@ -2,16 +2,13 @@ package com.example.demo.services;
 
 import com.example.demo.entities.AppointmentMaster;
 import com.example.demo.repositories.AppointmentMasterRepository;
-import com.example.demo.config.DashboardJPAConfig;
-import jakarta.persistence.Column;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import jakarta.persistence.Query;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,6 +21,13 @@ public class AppointmentMasterService {
     @PersistenceContext
     private EntityManager entityManager;
 
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+    @Autowired
+    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
     public Optional<AppointmentMaster> findAppointmentOne(){
         return repository.findById(1L);
     }
@@ -35,12 +39,20 @@ public class AppointmentMasterService {
                 .executeUpdate();
     }
 
-    @Transactional
-    public List<AppointmentMaster> resultOfQuery(){
+    /*@Transactional
+    public Optional resultOfQuery(){
 
-    List<AppointmentMaster> result = entityManager.createNativeQuery("SELECT * FROM APPOINTMENT_MASTER WHERE PATIENT_ID = 1105102 AND PROCEDURE_ID = 18215")
-                .getResultList();
+    Optional result = entityManager.createNativeQuery("SELECT * FROM APPOINTMENT_MASTER WHERE PATIENT_ID = 1105102 AND PROCEDURE_ID = 18215")
+                .getResultList()
+            .stream().findFirst();
     return result;
+    }*/
+
+    public List<AppointmentMaster> resultOfInsertQuery(){
+        String sql = "SELECT * FROM APPOINTMENT_MASTER WHERE PATIENT_ID = 1105102 AND PROCEDURE_ID = 18215 LIMIT 1";
+
+        List<AppointmentMaster> appointmentMasters = jdbcTemplate.query(sql, new AppointmentMasterRowMapper());
+        return appointmentMasters;
     }
 
 

@@ -9,8 +9,8 @@ spring:
     dashboard:
       driverClassName: com.mysql.jdbc.Driver
       url: jdbc:mysql://pp-v1-patientportal-data-service-ro-qa.dbc.chenmed.local:3306/DASHBOARD_PROD
-      username: usr012212
-      password: Jykii51994.
+      username: usr_soniag1
+      password: Baby++3616
     hikari:
       connection-timeout: 30000
       idle-timeout: 600000
