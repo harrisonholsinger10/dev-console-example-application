@@ -13,16 +13,10 @@ import java.util.Date;
  *
  * This is copied from domain-beans
  */
-@NamedQueries({
-        @NamedQuery(name = "getLastPCPEncounter", query = "from VisitCheckinEntities visitCheckin where visitCheckin.patientId = :patientId "
-                + "and visitCheckin.deleted !=:deleted " + "and visitCheckin.patientLeft !=:patientLeft "
-                + "and visitCheckin.consultationEndTime is not null "
-                + "and specialtyId in (SELECT s.specialtyId FROM Specialty s where s.specialty like :specialtyType) "
-                + "order by visitDate desc ") })
 @Entity
 @Table(name = "VISIT_CHECKIN")
 @GenericGenerator(name = "VC_ID", strategy = "identity")
-public class VisitCheckinEntities extends GenericEntity implements java.io.Serializable {
+public class VisitCheckIn implements java.io.Serializable {
 
     private static final long serialVersionUID = -7109501901901366096L;
 
@@ -88,12 +82,12 @@ public class VisitCheckinEntities extends GenericEntity implements java.io.Seria
     private Integer practiceId;
     private Integer drugHistoryViewed;
 
-    public VisitCheckinEntities() {
+    public VisitCheckIn() {
         super();
     }
 
-    public VisitCheckinEntities(Long patientId, Date visitDate, Integer insuranceId, Boolean transportationProvided,
-                             Integer procedureId, Integer officeId, Integer doctorId, String atcDesc) {
+    public VisitCheckIn(Long patientId, Date visitDate, Integer insuranceId, Boolean transportationProvided,
+                        Integer procedureId, Integer officeId, Integer doctorId, String atcDesc) {
         this.patientId = patientId;
         this.visitDate = visitDate;
         this.insuranceId = insuranceId;
@@ -677,7 +671,7 @@ public class VisitCheckinEntities extends GenericEntity implements java.io.Seria
     /**
      * Set the value related to the column: visitDescription.
      *
-     * @param visitDescription the visitDescription value you wish to set
+     * @param procedureId the procedureId value you wish to set
      */
     public void setProcedureId(Integer procedureId) {
         this.procedureId = procedureId;
