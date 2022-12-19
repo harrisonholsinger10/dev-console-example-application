@@ -50,7 +50,7 @@ public class AppointmentMasterService {
     }*/
 
     public List<AppointmentMaster> resultOfInsertQuery(){
-        String sql = "SELECT * FROM APPOINTMENT_MASTER WHERE PATIENT_ID = 1105102 AND PROCEDURE_ID = 18215 LIMIT 1";
+        String sql = "SELECT * FROM DASHBOARD_PROD.APPOINTMENT_MASTER WHERE PATIENT_ID = 1105102 AND PROCEDURE_ID = 18215 LIMIT 1";
 
         List<AppointmentMaster> appointmentMasters = jdbcTemplate.query(sql, new AppointmentMasterRowMapper());
         return appointmentMasters;
