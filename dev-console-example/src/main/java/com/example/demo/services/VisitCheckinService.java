@@ -1,13 +1,14 @@
 package com.example.demo.services;
 
-import com.example.demo.entities.AppointmentMaster;
-import com.example.demo.entities.VisitCheckIn;
-import com.example.demo.repositories.AppointmentMasterRepository;
+
 import com.example.demo.repositories.VisitCheckinRepository;
+import com.example.demo.entities.VisitCheckIn;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+
 
 import java.util.Optional;
 

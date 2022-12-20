@@ -61,9 +61,4 @@ public class AppointmentMasterService {
         jdbcTemplate.update(sql);
     }
 
-
-
-
-
-
 }
