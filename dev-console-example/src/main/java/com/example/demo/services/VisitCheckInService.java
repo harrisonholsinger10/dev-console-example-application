@@ -1,23 +1,18 @@
 package com.example.demo.services;
 
 
-import com.example.demo.repositories.VisitCheckinRepository;
-import com.example.demo.entities.VisitCheckIn;
+import com.example.demo.repositories.VisitCheckInRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-
-import java.util.Optional;
-
 @Service
-public class VisitCheckinService {
+public class VisitCheckInService {
 
     @Autowired
-    private VisitCheckinRepository repository;
+    private VisitCheckInRepository repository;
 
     @PersistenceContext
     private EntityManager entityManager;
